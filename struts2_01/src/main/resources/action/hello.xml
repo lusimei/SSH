@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!--修改struts2默认常量值-->
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+
+    <package name="hellodemo" extends="struts-default" namespace="/">
+        <action name="hello" class="cn.itcast.action.HelloAction">
+            <result name="ok">/index.jsp</result>
+        </action>
+    </package>
+</struts>

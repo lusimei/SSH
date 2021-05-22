@@ -1,0 +1,2 @@
+com\itcast\entity\User.class
+com\itcast\utils\HibernateUtils.class

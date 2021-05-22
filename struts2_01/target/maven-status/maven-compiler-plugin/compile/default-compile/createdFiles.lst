@@ -1,0 +1,10 @@
+cn\itcast\service\CustomerService.class
+cn\itcast\entity\Customer.class
+cn\itcast\entity\Role.class
+cn\itcast\utils\HibernateUtils.class
+cn\itcast\action\HelloAction.class
+cn\itcast\action\UserAction.class
+cn\itcast\entity\LinkMan.class
+cn\itcast\action\PersonAction.class
+cn\itcast\method\BookAction.class
+cn\itcast\entity\User.class

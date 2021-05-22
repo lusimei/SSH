@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--修改struts2默认常量值-->
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <!--devMode的值为true时，s:debug才会生效，页面才会显示链接-->
+    <constant name="struts.devMode" value="true"></constant>
+
+    <package name="hellodemo" extends="struts-default" namespace="/">
+        <action name="hello" class="cn.itcast.action.HelloAction">
+            <result name="ok">/index.jsp</result>
+        </action>
+        <action name="user" class="cn.itcast.action.UserAction">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="person" class="cn.itcast.action.PersonAction">
+            <!--<result name="none">/index.jsp</result>-->
+        </action>
+        <action name="obj" class="cn.itcast.action.ObjectDemoAction">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="lv" class="cn.itcast.action.ListDemoAction">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+
+    <package name="methoddemo" extends="struts-default" namespace="/" strict-method-invocation="false">
+        <!--<action name="addAction" class="cn.itcast.method.BookAction" method="add">-->
+
+        <!--</action>-->
+        <!--<action name="updateAction" class="cn.itcast.method.BookAction" method="update">-->
+
+        <!--</action>-->
+        <action name="book_*" class="cn.itcast.method.BookAction" method="{1}">
+            <!--<result name="add">/{1}.jsp</result>-->
+            <!--<result name="update">/{1}.jsp</result>-->
+            <result name="list">/index.jsp</result>
+        </action>
+    </package>
+
+    <package name="global_result" extends="struts-default" namespace="/" strict-method-invocation="false">
+        <global-results>
+            <!--全局结果页面配置-->
+            <result name="success">/index.jsp</result>
+        </global-results>
+        <action name="orders" class="cn.itcast.action.OrdersAction">
+            <!--局部页面，优先级大于全局页面-->
+            <!--<result name="success" type="dispatcher">/order.jsp</result>-->
+            <!--<result name="success" type="redirect">/order.jsp</result>-->
+            <!--<result name="success" type="redirectAction">book</result>-->
+            <result name="success" type="chain">book</result>
+        </action>
+        <action name="book" class="cn.itcast.action.BookAction">
+            <!--<result name="success">/index.jsp</result>-->
+        </action>
+        <action name="form_*" class="cn.itcast.form.FormAction" method="{1}"></action>
+    </package>
+
+    <package name="datademo" extends="struts-default" namespace="/" strict-method-invocation="false">
+        <action name="data_*" class="cn.itcast.data.DataAction" method="{1}"></action>
+        <action name="data2" class="cn.itcast.data.Data2Action"></action>
+        <action name="list" class="cn.itcast.list.ListAction"></action>
+        <action name="map" class="cn.itcast.map.MapAction"></action>
+    </package>
+
+    <package name="customer"  extends="struts-default" namespace="/" strict-method-invocation="false">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="cn.itcast.interceptor.LoginInterceptor"></interceptor>
+        </interceptors>
+
+        <action name="cs_*" class="cn.itcast.action.CustomerAction" method="{1}">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="cs">/cs.jsp</result>
+            <result name="login">/login.jsp</result>
+            <result name="loginsuccess">/success.jsp</result>
+        </action>
+    </package>
+
+    <!--<include file="action/hello.xml"></include>-->
+</struts>
